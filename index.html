@@ -25,12 +25,34 @@
 <body>
     <h1>Simple Web Page</h1>
     <button id="myButton">Click Me!</button>
+    <button id="purchaseButton">Purchase</button>
 
     <script>
-        // JavaScript to handle button click if needed
+        // JavaScript to handle "Click Me!" button click
         document.getElementById("myButton").addEventListener("click", function() {
             ym(95045415,'reachGoal','clk02')
             alert("Button Clicked!");
+        });
+
+        // JavaScript to handle "Purchase" button click
+        document.getElementById("purchaseButton").addEventListener("click", function() {
+            // Initialize product data
+            var productData = {
+                id: "product123",  // Product ID
+                name: "Sample Product",  // Product name
+                price: 50.0,  // Product price
+                quantity: 1  // Quantity purchased
+            };
+
+            // Initialize transaction data
+            var transactionData = {
+                id: "order123",  // Transaction ID
+                revenue: 50.0,  // Total revenue
+                products: [productData]  // Array of purchased products
+            };
+
+            ym(95045415, 'reachGoal', 'purchase', transactionData);
+            alert("Purchase made!");
         });
     </script>
 </body>
