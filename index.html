@@ -5,26 +5,13 @@
     <title>Simple Web Page with Yandex.Metrika</title>
     <!-- Initialize dataLayer -->
     <script type="text/javascript">
-        var dataLayer = dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(95045415, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true,
-            ecommerce:"dataLayer"
-        });
+        /* ... existing Yandex.Metrika initialization code ... */
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/95045415" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
     <h1>Simple Web Page</h1>
@@ -34,7 +21,7 @@
     <script>
         // JavaScript to handle "Click Me!" button click
         document.getElementById("myButton").addEventListener("click", function() {
-            ym(95045415,'reachGoal','clk02')
+            ym(95045415, 'reachGoal', 'clk02');
             alert("Button Clicked!");
         });
 
@@ -42,20 +29,26 @@
         document.getElementById("purchaseButton").addEventListener("click", function() {
             // Initialize product data
             var productData = {
-                id: "product123",  // Product ID
-                name: "Sample Product",  // Product name
-                price: 50.0,  // Product price
-                quantity: 1  // Quantity purchased
+                id: "product123",
+                name: "Sample Product",
+                price: 50.0,
+                quantity: 1
             };
 
-            // Initialize transaction data
-            var transactionData = {
-                id: "order123",  // Transaction ID
-                revenue: 50.0,  // Total revenue
-                products: [productData]  // Array of purchased products
-            };
+            // Push eCommerce data to dataLayer
+            dataLayer.push({
+                "ecommerce": {
+                    "currencyCode": "USD",
+                    "purchase": {
+                        "actionField": {
+                            "id": "order123",
+                            goal_id: 309713973  // Номер цели
+                        },
+                        "products": [productData]
+                    }
+                }
+            });
 
-            ym(95045415, 'reachGoal', 'purchase', transactionData);
             alert("Purchase made!");
         });
     </script>
