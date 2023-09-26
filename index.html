@@ -31,6 +31,11 @@
     <button id="purchaseButton">Purchase</button>
 
     <script>
+
+                    ym(95045415, 'getClientID', function(clientID) {
+  alert("Purchase made!");
+});
+        
         // JavaScript to handle "Click Me!" button click
         document.getElementById("myButton").addEventListener("click", function() {
             ym(95045415, 'reachGoal', 'clk02');
@@ -60,6 +65,10 @@
                     }
                 }
             });
+
+            ym(95045415, 'getClientID', function(clientID) {
+  alert("Purchase made!");
+});
 
             alert("Purchase made!");
         });
